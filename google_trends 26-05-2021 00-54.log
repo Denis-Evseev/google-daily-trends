@@ -1,0 +1,24 @@
+INFO:main:Processing Ticker: WHI Keyword: /m/026h1w
+INFO:GoogleTrends:Fetching '/m/026h1w' for period:2020-08-05 2021-05-01
+INFO:GoogleTrends:Fetching '/m/026h1w' for period:2020-02-18 2020-11-13
+INFO:GoogleTrends:Normalize by overlapping period:2020-08-05 - 2020-11-13
+INFO:GoogleTrends:Fetching '/m/026h1w' for period:2019-09-02 2020-05-28
+INFO:GoogleTrends:Normalize by overlapping period:2020-02-18 - 2020-05-28
+INFO:main:Finished processing...
+INFO:main:Saved results to : WHI 26-05-2021 00-54.csv
+INFO:main:Processing Ticker: VIDE Keyword: /m/03p3l9x
+INFO:GoogleTrends:Fetching '/m/03p3l9x' for period:2020-08-05 2021-05-01
+INFO:GoogleTrends:Fetching '/m/03p3l9x' for period:2020-02-18 2020-11-13
+INFO:GoogleTrends:Normalize by overlapping period:2020-08-05 - 2020-11-13
+INFO:GoogleTrends:Fetching '/m/03p3l9x' for period:2019-09-02 2020-05-28
+INFO:GoogleTrends:Normalize by overlapping period:2020-02-18 - 2020-05-28
+INFO:main:Finished processing...
+INFO:main:Saved results to : VIDE 26-05-2021 00-54.csv
+INFO:main:Processing Ticker: ASRV Keyword: /m/03p1h44
+INFO:GoogleTrends:Fetching '/m/03p1h44' for period:2020-08-05 2021-05-01
+INFO:GoogleTrends:Fetching '/m/03p1h44' for period:2020-02-18 2020-11-13
+INFO:GoogleTrends:Normalize by overlapping period:2020-08-05 - 2020-11-13
+INFO:GoogleTrends:Fetching '/m/03p1h44' for period:2019-09-02 2020-05-28
+INFO:GoogleTrends:Normalize by overlapping period:2020-02-18 - 2020-05-28
+INFO:main:Finished processing...
+INFO:main:Saved results to : ASRV 26-05-2021 00-54.csv
