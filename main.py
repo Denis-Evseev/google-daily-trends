@@ -40,10 +40,15 @@ def main():
 
         daily_line = GraphLine(daily_fetched_data[keyword], "daily")
         overlap_line = GraphLine(daily_fetched_data['overlap'], 'overlap')
-        lines = [daily_line, overlap_line]
 
+        # Build chart - Way 1
+        daily_fetched_data.plot()
+
+        # Build chart - Way 2
+        lines = [daily_line, overlap_line]
         graph_builder.build(lines, "dates", "Relative Search Trends", title="Daily Google Trends for keyword: " + keyword)
-        logger.info("Saved results to : " + filename)
+
+        logger.info("Build graph for : "  + ticker + " Keyword: " + keyword)
 
 
 if __name__ == "__main__":

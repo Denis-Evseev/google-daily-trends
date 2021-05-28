@@ -9,10 +9,10 @@ class GraphBuilder:
         self.figsize=figsize
 
     def build(self, lines, x_label, y_label, grid=True, title="Empty title"):
-        plt.figure(figsize=self.figsize)
+        # plt.figure(figsize=self.figsize)
 
         for line in lines:
-            plt.plot(data=line.data, label=line.label)
+            plt.plot(line.data, label=line.label)
 
         plt.grid(grid)
         plt.xlabel(x_label)
