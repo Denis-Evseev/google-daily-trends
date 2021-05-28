@@ -18,4 +18,5 @@ class GraphBuilder:
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
+        plt.legend()
         plt.show()

@@ -12,6 +12,7 @@ from pytrends.request import TrendReq
 
 
 def main():
+
     now = datetime.now()
     execution_timestamp = now.strftime("%d-%m-%Y %H-%M")
 
@@ -22,8 +23,14 @@ def main():
     google_trends = GoogleTrends(pytrend, verbose=True)
     graph_builder = GraphBuilder()
 
+    start = "2017-01-01" #"2020-01-01"
+    end = "2019-11-23" #"2021-05-01"
+
     # Getting all keywords:
-    df = pd.read_csv('search_df.csv')
+    # df = pd.read_csv('search_df.csv')
+
+    d = {'ticker': ["iPhone"], 'keyword': ["iPhone"]}
+    df = pd.DataFrame(data=d)
 
     # Processing every keyword separately
     for index, row in df.iterrows():
@@ -32,21 +39,23 @@ def main():
         keyword = row['keyword']
 
         logger.info("Processing Ticker: " + ticker + " Keyword: " + keyword)
-        daily_fetched_data = google_trends.get_daily_trend(keyword=keyword, start="2020-01-01", end="2021-05-01")
+        overlapped_daily_data = google_trends.get_overlapped_daily_trend_data(keyword=keyword, start=start, end=end)
+        original_daily_data = google_trends.get_original_daily_trend_data(keyword=keyword, start=start, end=end)
         logger.info("Finished processing...")
 
         filename = ticker + " " + execution_timestamp + ".csv"
         # daily_fetched_data.to_csv(filename)
 
-        daily_line = GraphLine(daily_fetched_data[keyword], "daily")
-        overlap_line = GraphLine(daily_fetched_data['overlap'], 'overlap')
+        overlapped_daily_line = GraphLine(overlapped_daily_data[keyword], "overlapped daily")
+        original_daily_line = GraphLine(original_daily_data[keyword], "original daily")
+        overlap_line = GraphLine(overlapped_daily_data['overlap'], 'overlap')
 
         # Build chart - Way 1
-        daily_fetched_data.plot()
+        # overlapped_daily_data.plot()
 
         # Build chart - Way 2
-        lines = [daily_line, overlap_line]
-        graph_builder.build(lines, "dates", "Relative Search Trends", title="Daily Google Trends for keyword: " + keyword)
+        lines = [overlapped_daily_line, original_daily_line, overlap_line]
+        graph_builder.build(lines, "dates", "Relative Search Trends", title="Daily Google Trends for keyword: " + keyword + " " + start + " " + end)
 
         logger.info("Build graph for : "  + ticker + " Keyword: " + keyword)
 
