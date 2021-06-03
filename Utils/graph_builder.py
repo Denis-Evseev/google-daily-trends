@@ -12,7 +12,7 @@ class GraphBuilder:
         # plt.figure(figsize=self.figsize)
 
         for line in lines:
-            plt.plot(line.data, label=line.label)
+            plt.plot(line.data, label=line.label, color=line.color)
 
         plt.grid(grid)
         plt.xlabel(x_label)
