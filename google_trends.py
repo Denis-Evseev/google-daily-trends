@@ -3,6 +3,8 @@ from datetime import datetime, timedelta, date
 import time
 
 from pytrends.exceptions import ResponseError
+from pytrends import dailydata
+
 import logging
 
 class GoogleTrends:
@@ -91,7 +93,7 @@ class GoogleTrends:
 
                 # normalize using the maximum value of the overlapped period
                 y1 = temp.loc[overlap_start:end_d].iloc[:, 0].values.max()
-                y2 = df.loc[overlap_start:end_d].iloc[:, -1].values.max()  # take all columns except the last one
+                y2 = df.loc[overlap_start:end_d].iloc[:, -1].values.max()  # take the last column
                 coef = y2 / y1
                 temp = temp * coef
                 ol_temp.loc[overlap_start:end_d, :] = 1
@@ -158,8 +160,28 @@ class GoogleTrends:
         overlapped_daily_data = df
         return overlapped_daily_data
 
+
+    def get_daily_trend_data(self, keyword: str, start: str, end: str, geo='', verbose=False):
+        start_d = datetime.strptime(start, '%Y-%m-%d')
+        end_d = datetime.strptime(end, '%Y-%m-%d')
+        s_year = start_d.year
+        s_mon = start_d.month
+        e_year = end_d.year
+        e_mon = end_d.month
+
+        pytrends_daily_data = dailydata.get_daily_data(word=keyword,
+                                             start_year=s_year,
+                                             start_mon=s_mon,
+                                             stop_year=e_year,
+                                             stop_mon=e_mon,
+                                             geo=geo,
+                                             verbose=verbose,
+                                             wait_time=1.0)
+        return pytrends_daily_data
+
+
     def get_original_daily_trend_data(self, keyword: str, start: str, end: str, cat=0,
-                        geo='', gprop='', delta=269, sleep=0, tz=0) -> pd.DataFrame:
+                        geo='', gprop='', delta=268, sleep=0, tz=0) -> pd.DataFrame:
         """Stitch and scale consecutive daily trends data between start and end date.
         This function will first download piece-wise google trends data and then
         scale each piece using the overlapped period.
